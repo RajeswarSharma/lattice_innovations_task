@@ -9,6 +9,6 @@ module.exports = {
   synchronize: false,
   logging: false,
   migrationsTableName: "migrations",
-  entities: ["entities/**/*.js"],
-  migrations: ["migrations/*.js"],
+  entities: ["database/entities/**/*.entity.js"],
+  migrations: ["database/migrations/*.js"],
 };

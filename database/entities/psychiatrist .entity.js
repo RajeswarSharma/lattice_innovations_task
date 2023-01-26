@@ -1,10 +1,10 @@
 const { EntitySchema } = require("typeorm");
-const { RELATION_PATIENT } = require("../../constants");
+const { RELATION_PSYCHIATRIST } = require("../../constants");
 module.exports = new EntitySchema({
-  name: RELATION_PATIENT,
-  tableName: RELATION_PATIENT,
+  name: RELATION_PSYCHIATRIST,
+  tableName: RELATION_PSYCHIATRIST,
   columns: {
-    patient_id: {
+    psychiatrist_id: {
       primary: true,
       generated: true,
       type: "int",
@@ -31,7 +31,7 @@ module.exports = new EntitySchema({
       type: "varchar",
       nullable: true,
     },
-    psychiatrist_id: {
+    hospital_id: {
       type: "int",
     },
     created_at: {
