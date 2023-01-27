@@ -1,13 +1,11 @@
 require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 global.logger = require("./config/logger.config");
-const express = require("express");
 const http = require("http");
-const { getDBConnection } = require("./database/dbConnection");
 const { formatErrorLog } = require("./utils/error.utils");
-const app = express();
+const app = require("./routes/route");
 const PORT = process.env.PORT || 8000;
 
-app.get("/ping", async (req, res) => {
+app.get("/ping",async (req, res) => {
   res.status(200).json({ pid: process.pid });
 });
 
@@ -31,7 +29,6 @@ app.set("port", PORT);
 const server = http.createServer(app);
 server.on("error", onError);
 server.listen(PORT, async () => {
-  await getDBConnection();
   global.logger.info(`server is listning at ${PORT}, instance_pid:${process.pid}`);
   const server_info = {
     env: process.env.NODE_ENV,
