@@ -35,6 +35,32 @@ exports.regPsyValidator = [
       "must contain one upper character, one lower character and a number. Max length 15 and min length 8",
     ),
 ];
+exports.regPatientValidator = [
+  body("name").trim().not().isEmpty().withMessage("require patient name"),
+  body("email").isEmail().withMessage("require valid email"),
+  body("mobile").custom((val) => {
+    if (val) {
+      let re = new RegExp(CONST_REGEX_PHONE);
+      return re.test(val);
+    }
+    return true;
+  }).withMessage("invalid mobile number"),
+  body("address")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("patient address")
+    .isLength({ min: 10 })
+    .withMessage("patient address have min length of 10"),
+  body("password")
+    .trim()
+    .isLength({ min: 8, max: 15 })
+    .withMessage("password length should be 8 to 15")
+    .custom((val)=>{return new RegExp(CONST_REGEX_PASSWORD).test(val)})
+    .withMessage(
+      "must contain one upper character, one lower character and a number. Max length 15 and min length 8",
+    ),
+];
 exports.validationResult = (req, res, next) => {
   const validationErrors = validationResult(req);
   if (!validationErrors.isEmpty()) {
