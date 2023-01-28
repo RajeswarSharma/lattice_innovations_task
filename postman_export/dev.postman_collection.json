@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "77cb7980-e703-4312-abf2-649e8eabeca3",
+		"name": "dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17398589"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"purab@email.com\",\r\n    \"password\":\"Purab@123\",\r\n    \"user_type\":\"psychiatrist\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/auth/login",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haWxAYXBvbGxvLmNvbSIsInVzZXJfdHlwZSI6Imhvc3BpdGFsIiwiaWF0IjoxNjc0ODMzNjg1LCJleHAiOjE2NzQ5MjAwODUsImlzcyI6InJhamVzd2FyIn0.UhOITteM2sL4iD90KjjVeyMFS6qgZu1L733OtL8Q4xvwoP21JFraYvnu7Z_9zWp0-b2nss-R2VEhO7q_k8t5Qg-I5G6g056_ottOcFcg0uynwfMIG7kseiZ4XAKBBfbQ-O79Un_6dUJXAxvysInnOOfmrx7HU12-dU5OvZaARfXI1MFR6uUnDgsB0IUw8RasMVsNmRljnpC6gCJx_gxJ5zgMrzWBBrsm7qytkqJav7Qdci49ScwIZxiDuOVlPvaNNHX3dgFlnM9bAVLFLNEvy-XsgriMS_Pq9xeHv8n0ra1H6riRvQMfBROmUQTg4bZKB6gxEEo6YtaDp8aR3CJ28A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/ping",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPsychiatrist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Faiyaz",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "faiyaz3@email.com",
+							"type": "text"
+						},
+						{
+							"key": "mobile",
+							"value": "+111111111130",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "address address address",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Faiyaz3@123",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajeswar Sharma/Pictures/Saved Pictures/uwp186382.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/psychiatrist/add",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"psychiatrist",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPatient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Faiyaz",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "faiyaz3@email.com",
+							"type": "text"
+						},
+						{
+							"key": "mobile",
+							"value": "+111111111130",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "address address address",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Faiyaz3@123",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajeswar Sharma/Pictures/Saved Pictures/jzfak5.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/patient/add",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"patient",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hospital-details-by-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/hospital/details/:hospital_id",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"hospital",
+						"details",
+						":hospital_id"
+					],
+					"variable": [
+						{
+							"key": "hospital_id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/public/:filename",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"public",
+						":filename"
+					],
+					"variable": [
+						{
+							"key": "filename",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
