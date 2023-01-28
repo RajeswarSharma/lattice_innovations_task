@@ -1,6 +1,7 @@
 "use strict";
 const { body } = require("express-validator");
 const { validationResult } = require("express-validator");
+const uploader = require("../config/multer.config");
 const { HTTP_CODE_BAD_REQUEST, RELATION_HOSPITAL, RELATION_PATIENT, RELATION_PSYCHIATRIST, HTTP_CODE_UNAUTHORIZED, HTTP_CODE_INTERNAL_ERROR, HTTP_CODE_FORBIDDEN, CONST_REGEX_PHONE, CONST_REGEX_PASSWORD } = require("../constants");
 const { formatErrorLog } = require("../utils/error.utils");
 const { errorSender, verifyToken } = require("../utils/helper.utils");
@@ -90,6 +91,18 @@ exports.checkUserType = (user_type)=>{
     const {authorization} = req.headers;
     if(authorization.user_type === user_type)
       return  next();
-    return errorSender(res, HTTP_CODE_FORBIDDEN, "permission denied");
+    return errorSender(res, HTTP_CODE_FORBIDDEN, `require access-level:${user_type}`);
   }
+}
+
+exports.uploadFile=(req, res, next)=>{
+  const upload = uploader.single("photo");
+  upload(req, res, function (error) {
+    if (error) {
+      console.log(error);
+      return errorSender(res,HTTP_CODE_BAD_REQUEST,"invalid file type or file size");
+      // An unknown error occurred when uploading.
+    }
+    next();
+  });
 }

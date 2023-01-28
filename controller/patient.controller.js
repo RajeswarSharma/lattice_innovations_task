@@ -5,7 +5,10 @@ const { formatErrorLog } = require("../utils/error.utils");
 const { errorSender, hashPasswords } = require("../utils/helper.utils");
 
 const addPatient = async(req,res)=>{
-     let {name,mobile,email,photo,password,address} = req.body;
+    
+    if (!req.file)return errorSender(res, HTTP_CODE_BAD_REQUEST, "Profile photo is required");
+    let photo = req.file.filename;
+    let {name,mobile,email,password,address} = req.body;
     const { uid } = req.headers.authorization;
     password = await hashPasswords(password);
     const values = { name, mobile, email, photo, password, address,psychiatrist_id:uid };
