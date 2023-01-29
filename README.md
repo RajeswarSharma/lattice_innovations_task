@@ -1,7 +1,7 @@
 # lattice_innovations_task
 
 ### Note: 
-Database dump and postman collection export are included in the repe
+Database dump and postman collection export are included in the repo
 filenames
 
 'db_dump'
