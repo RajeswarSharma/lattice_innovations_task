@@ -1,1 +1,92 @@
 # lattice_innovations_task
+## Requirements
+
+### Environment
+
+For development, you will only need Node.js and a node global package, NPM, installed in your environement.
+
+### Database
+MYSQL:  8.0.32 MySQL Community Server - GPL
+
+## Packages
+"bcrypt": "5.1.0"
+
+"cors": "2.8.5"
+
+"dotenv": "16.0.3"
+
+"express": "4.18.2"
+
+"express-validator": "6.14.3"
+
+"jsonwebtoken": "9.0.0"
+
+"multer": "1.4.5-lts.1"
+
+"mysql2": "2.3.3"
+
+"typeorm": "0.3.11"
+
+"winston": "3.8.2"
+
+## How to start server
+1. Development
+```
+npm start
+```
+2. Production (pm2)
+```
+pm2 start init.json
+```
+
+## Migration commands
+1. To generate migrations
+```
+npm run migration:generate
+```
+2. To Push migration
+```
+npm run migration:up
+```
+
+## Endpoints
+1. POST: /auth/login
+
+Sample req body
+```json
+{
+    "email":"purab@email.com",
+    "password":"Purab@123",
+    "user_type":"psychiatrist"
+}
+```
+### Note
+Valid user types: ['hospital','psychiatrist','patient']
+
+2. POST: /psychiatrist/add
+3. POST: /patient/add
+
+## Test credentials
+### Hospital(test)
+
+| Email           | Password     |   
+|-----------------|--------------|
+| mail@apollo.com | Abc@123      |   
+| mail@jnmch.com  | Abc@123      |   
+| mail@igims.com  | Abc@123      |   
+| mail@aiims.com  | Abc@123      |
+
+### Psychiatrist(test)
+Email pattern: [firstname in lowercase]@email.com
+
+Password: [firstname, first letter uppercase rest are lower]@123
+
+Example
+
+| Email             | Password   |   
+|-------------------|------------|
+| purab@email.com   | Purab@123  |
+| rudra@email.com   | Rudra@123  |
+| lakshay@email.com | Lakshay@123|
+
+### Valid user types: ['hospital','psychiatrist','patient']
