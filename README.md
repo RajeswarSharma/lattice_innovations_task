@@ -78,12 +78,20 @@ Sample req body
 
 ![image](https://user-images.githubusercontent.com/54684919/215306256-ab7d261f-9ba9-465a-8c8a-7bc33ae635c9.png)
 
+### Note: 
+Psychiatrist can only be added by user_type 'hospital'. It will be added as a staff/psychiatrist of the same hospital
+
+Require hospital's bearer token(jwt) in auth header
 ### 3. POST: /patient/add
 
 Sample req body
 
 ![image](https://user-images.githubusercontent.com/54684919/215306280-a6967daa-14b0-45eb-accd-b42ef772cdfc.png)
 
+### Note: 
+Patients can only be added by user_type 'psychiatrist' (according to the doc) and it will be added as a patient of the same psychiatrist
+
+Require psychiatrist's bearer token(jwt) in auth header
 ### 4. GET: /hospital/details/:hospital_id
 Response includes 
 
