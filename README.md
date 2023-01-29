@@ -48,9 +48,10 @@ npm run migration:generate
 ```
 npm run migration:up
 ```
+<hr>
 
 ## Endpoints
-1. POST: /auth/login
+### 1. POST: /auth/login
 
 Sample req body
 ```json
@@ -63,14 +64,35 @@ Sample req body
 ### Note
 Valid user types: ['hospital','psychiatrist','patient']
 
-2. POST: /psychiatrist/add
+### 2. POST: /psychiatrist/add
 
 Sample req body
+
 ![image](https://user-images.githubusercontent.com/54684919/215306256-ab7d261f-9ba9-465a-8c8a-7bc33ae635c9.png)
 
-3. POST: /patient/add
+### 3. POST: /patient/add
+
+Sample req body
+
 ![image](https://user-images.githubusercontent.com/54684919/215306280-a6967daa-14b0-45eb-accd-b42ef772cdfc.png)
 
+### 4. GET: /hospital/details/:hospital_id
+Response includes 
+
+Hospital name,  
+Total Psychiatrist count, 
+Total patients count,
+Psychiatrist Details,
+
+[
+Id,
+Name,
+Patients count]
+
+### 5. GET: /public/:filename
+To retrieve uploaded files vis filenames
+
+<hr>
 
 ## Test credentials
 ### Hospital(test)
