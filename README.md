@@ -1,4 +1,12 @@
 # lattice_innovations_task
+
+### Note: 
+Database dump and postman collection export are included in the repe
+filenames
+
+'db_dump'
+
+'postman_export'
 ## Requirements
 
 ### Environment
