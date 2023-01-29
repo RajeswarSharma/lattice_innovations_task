@@ -6,8 +6,7 @@ const { validatePassword, errorSender, getLoginToken } = require("../utils/helpe
 
 const login = async (req, res) => {
   try {
-    const [dbConnection, error] = await getDBConnection();
-    if (error) console.log(error); // TODO
+     const dbConnection = global.dbConnection;
     const {email,password,user_type} = req.body;
     const data = await getUser(dbConnection,{email,password,user_type})
     if(!data) return errorSender(res,HTTP_CODE_UNAUTHORIZED,"incorrect email or password");

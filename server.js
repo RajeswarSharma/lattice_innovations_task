@@ -3,6 +3,7 @@ global.logger = require("./config/logger.config");
 const http = require("http");
 const { formatErrorLog } = require("./utils/error.utils");
 const app = require("./routes/route");
+const { getDBConnection } = require("./database/dbConnection");
 const PORT = process.env.PORT || 8000;
 
 app.get("/ping",async (req, res) => {
@@ -29,6 +30,12 @@ app.set("port", PORT);
 const server = http.createServer(app);
 server.on("error", onError);
 server.listen(PORT, async () => {
+  const [dbConnection, error] = await getDBConnection();
+  if(error){
+    global.logger.error(formatErrorLog(error));
+    process.exit(1);
+  }
+  global.dbConnection = dbConnection;
   global.logger.info(`server is listning at ${PORT}, instance_pid:${process.pid}`);
   const server_info = {
     env: process.env.NODE_ENV,

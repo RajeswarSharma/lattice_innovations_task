@@ -7,8 +7,7 @@ const { errorSender } = require("../utils/helper.utils");
 const getHospitaldataById = async(req,res)=>{
     try {
         const {hospital_id} = req.params;
-        const [dbConnection,error] = await getDBConnection();
-        if(error) throw error;
+        const dbConnection = global.dbConnection;
         const data = await listingByHospitalByID(dbConnection,{hospital_id});
         if(data) return res.json(data);
         return errorSender(res,HTTP_CODE_NOT_FOUND,"Not found");

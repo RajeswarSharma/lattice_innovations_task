@@ -13,11 +13,7 @@ const addPatient = async(req,res)=>{
     password = await hashPasswords(password);
     const values = { name, mobile, email, photo, password, address,psychiatrist_id:uid };
     try {
-        const [dbConnection,error] = await getDBConnection();
-        if(error) {
-            global.logger.error(formatErrorLog(error));
-            return errorSender(res,HTTP_CODE_INTERNAL_ERROR,"Connection failed");
-        }
+        const dbConnection = global.dbConnection;
         await insertPatient(dbConnection,values);
         return res.status(HTTP_CODE_CREATED).json({ message: "patient added" });
     } catch (error) {
